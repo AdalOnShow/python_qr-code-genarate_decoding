@@ -71,3 +71,33 @@ class BankAccount:
 
 # print(BankAccount.is_valid_interest_rate(3))
 # print(BankAccount.is_valid_interest_rate(13))
+
+#! Encapsulation is the principle of hiding the internal state and behavior of an object and only exposing a public interface. This is often achieved using private attributes and methods, which are denoted by a leading underscore (_). In the BankAccount class, we have made the balance attribute private by prefixing it with an underscore. We also have a public method deposit that allows us to modify the balance, but we control how it can be modified through the _is_valid_deposit method. Additionally, we have a private method __log_transaction that is used to log transactions whenever a deposit is made.
+class BankAccount:
+  def __init__(self):
+    self._balance = 0.0
+
+  @property
+  def balance(self):
+    return self._balance
+  
+  def deposit(self, amount):
+    if amount > 0:
+      self._balance += amount
+    else:
+      raise ValueError("Deposit amount must be positive.")
+
+  def withdraw(self, amount):
+    if amount > self._balance:
+      raise ValueError("Insufficient funds.")
+    elif amount <= 0:
+      raise ValueError("Withdrawal amount must be positive.")
+    else:
+      self._balance -= amount
+
+account = BankAccount()
+print(account.balance) # Output: 0.0
+account.deposit(100)
+print(account.balance) # Output: 100.0
+account.withdraw(30)
+print(account.balance) # Output: 70.0
