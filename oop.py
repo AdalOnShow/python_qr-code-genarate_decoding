@@ -95,9 +95,31 @@ class BankAccount:
     else:
       self._balance -= amount
 
-account = BankAccount()
-print(account.balance) # Output: 0.0
-account.deposit(100)
-print(account.balance) # Output: 100.0
-account.withdraw(30)
-print(account.balance) # Output: 70.0
+# account = BankAccount()
+# print(account.balance) # Output: 0.0
+# account.deposit(100)
+# print(account.balance) # Output: 100.0
+# account.withdraw(30)
+# print(account.balance) # Output: 70.0
+
+
+#! Abstraction is the principle of hiding complex implementation details and exposing only the necessary features of an object. In the BankAccount class, we have abstracted away the internal workings of how the balance is managed and how transactions are logged. The user of the BankAccount class does not need to know how the balance is stored or how transactions are logged; they only need to interact with the public methods deposit and withdraw to manage their account balance.
+
+class EmailService:
+  def _connect(self):
+    print("Connecting to email server...")
+  def _authenticate(self):
+    print("Authenticating...")
+
+  def sendEmail(self):
+    self._connect()
+    self._authenticate()
+    print("Sending email...")
+    self._disconnect()
+
+  def _disconnect(self):
+    print("Disconnecting from email server...")
+
+
+email = EmailService()
+email.sendEmail()
