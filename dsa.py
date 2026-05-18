@@ -41,6 +41,18 @@ class SinglyLinkedList:
         else:
             self.head = temp
 
+    def delete_at_position(self, pos):
+        t1 = self.head
+        prev = t1
+        while t1 != None:
+            if t1.info == pos:
+                prev.next = t1.next
+                del t1
+                break
+            else:
+                prev = t1
+                t1 = t1.next
+
     def print_list(self):
         t1 = self.head
         while t1 != None:
@@ -52,4 +64,5 @@ obj = SinglyLinkedList()
 obj.insert_at_end(10)
 obj.insert_at_end(20)
 obj.insert_at_beginning(5)
+obj.delete_at_position(20)
 obj.print_list()
