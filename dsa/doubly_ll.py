@@ -56,6 +56,27 @@ class DoublyLinkedList:
         if position == 0:
             self.head = temp
 
+    def delete_at_position(self, position):
+        if self.head is None:
+            return
+
+        curr = self.head
+        count = 0
+        while curr and count < position:
+            curr = curr.next
+            count += 1
+
+        if curr is None:
+            return
+
+        if curr.prev:
+            curr.prev.next = curr.next
+        else:
+            self.head = curr.next
+
+        if curr.next:
+            curr.next.prev = curr.prev
+
     def print_list(self):
         curr = self.head
         while curr:
@@ -69,5 +90,6 @@ list.insert_at_end(10)
 list.insert_at_beginning(5)
 list.insert_at_end(20)
 list.insert_at_position(15, 2)
+list.delete_at_position(1)
 list.insert_at_end(30)
 list.print_list()
